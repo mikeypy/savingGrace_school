@@ -1,2 +1,2 @@
 # savingGrace_school
-Excerpt from Bespoke Project
+Excerpt from bespoke project

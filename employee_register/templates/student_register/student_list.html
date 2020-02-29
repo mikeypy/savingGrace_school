@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-10 offset-md-1 mt-5">
+  <div class="jumbotron">
+    <h1 class="display-4">Student List</h1>
+    <p class="lead font-italic">Saving Grace Primary School</p>
+    <hr class="my-4">
+<table class="table table-borderless">
+  <thead class="border-bottom font-weight-bold">
+    <tr>
+      <td>Full Name</td>
+      <td>Age</td>
+      <td>Home Address</td>
+      <td>Class Year</td>
+      <td>
+        <a href="{% url 'StudentInsertForm' %}" class="btn btn-outline-success">
+          <i class="fas fa-plus"></i> Add New
+        </a>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in student_list %}
+    <tr>
+      <td>{{student.fullname}}</td>
+      <td>{{student.age}}</td>
+      <td>{{student.home_address}}</td>
+      <td>{{student.year}}</td>
+      <td>
+        <a href="{% url 'StudentUpdateForm' student.id %}" class="btn text-secondary px-0">
+          <i class="far fa-edit fa-md"></i>
+        </a>
+        <form action="{% url 'StudentDelete' student.id %}"  class="d-inline">{% csrf_token %}
+          <button type="submit" class='btn'>
+            <i class="far fa-trash-alt fa-md text-danger float-right"></i>
+          </button>
+
+        </form>
+      </td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
